@@ -13,7 +13,6 @@
 
 var DependencyWheel = new Class({
     options: {
-      type: 'default',
       center: {
          x: 100,
          y: 100
@@ -470,25 +469,6 @@ var DependencyWheel = new Class({
             // if (!this.lastMouseOver) return false;
             //this.options.onItemClick(this.data[this.lastMouseOver], e);
          }.bind(this));
-      }
-   },
-
-   // get the brightness/color of a particular line when heat/cold maps are used
-   getTemperature: function(type, percent) {
-	   var r;
-      if(type == 'heat') {
-         var p = {r: percent / 0.33, y: (percent - 0.33) / 0.33, w: (percent - 0.66) / 0.66};
-
-         r = Math.round(p.r * 255 > 255 ? 255 : p.r * 255);
-         var y = Math.round(p.y * 255 > 255 ? 255 : p.y * 255);
-         var w = Math.round(p.w * 255 > 255 ? 255 : p.w * 255);
-
-         return 'rgba(' + (r < 0 ? 0 : r) + ',' + (y < 0 ? 0 : y) + ',' + (w < 0 ? 0 : w) + ', ' + (percent * 0.8 + 0.2) + ')';
-      } else if(type == 'cold') {
-         r = Math.round(percent * 255);
-         var g = Math.round(130 + (percent * 125));
-
-         return 'rgba(' + r + ',' + g + ',255, ' + (percent * 0.8 + 0.2) + ')';
       }
    }
 });
