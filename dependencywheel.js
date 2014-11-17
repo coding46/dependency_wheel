@@ -136,7 +136,7 @@ var DependencyWheel = new Class({
 
       this.data.each(function(item) {
         item['connections'].each(function(subitem) {
-            if ($type(subitem) == 'array' && subitem[1] > this.maxCount)
+            if ($type(subitem) === 'array' && subitem[1] > this.maxCount)
               this.maxCount = subitem[1];
         }, this);
       }, this);
@@ -157,7 +157,7 @@ var DependencyWheel = new Class({
          var item = this.data[j];
          var color = {};
 
-         if (this.options.lines.color == 'random'){
+         if (this.options.lines.color === 'random'){
             p1 = 100;
             p2 = 100;
             color['__default'] = "rgba(" + (Math.floor(Math.random() * p1) + p2) + "," + (Math.floor(Math.random() * p1) + p2) + "," + (Math.floor(Math.random() * p1) + p2) + ", 1)";
@@ -292,7 +292,7 @@ var DependencyWheel = new Class({
    },
 
    getItemIdxById: function(id) {
-     if($type(id) == 'array') id = id[0];
+     if($type(id) === 'array') id = id[0];
 
      for (var i = 0, l = this.data.length; i < l; i++)
       if (this.data[i]['id'] == id)
@@ -488,7 +488,7 @@ DependencyWheel.Remote = new Class({
             }
 
             var border = options.data_border;
-            if (wheelData.length > border && options.resize == true){
+            if (wheelData.length > border && options.resize === true){
               options.width = wheelData.length * options.resize_factor;
               options.height = wheelData.length * options.resize_factor;
               var element_ids = options.resize_ids.split(",");
@@ -508,7 +508,7 @@ DependencyWheel.Remote = new Class({
                 }
             }
 
-            if (imageUrls.length == 0)
+            if (imageUrls.length === 0)
                 return false;
 
             var images = new Asset.images(imageUrls, {
@@ -559,7 +559,7 @@ function show_info_box(data, options){
 		recursive_deps = data.length,
 		info_box = document.getElementById(box_name ),
 		info_number = document.getElementById(number_name ),
-		scope_name = document.getElementById("scope_name");;
+		scope_name = document.getElementById("scope_name");
 
   options.data_length = data.length;
   
@@ -575,13 +575,14 @@ function show_info_box(data, options){
 
 
   if (scope_name){
-    if (options.scope == "all"){
+    if (options.scope === "all"){
       scope_name.innerHTML = "";  
     } else {
       scope_name.innerHTML = options.scope;  
     }
   }
-  if (typeof(handle_path) == 'function'){
+
+  if (typeof(handle_path) === 'function'){
     handle_path(options);  
   }
 }
